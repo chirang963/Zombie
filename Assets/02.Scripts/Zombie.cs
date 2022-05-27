@@ -90,7 +90,8 @@ public class Zombie : LivingEntity
             {
                 // 추적 대상 존재 : 경로를 갱신하고 AI 이동을 계속 진행
                 navMeshAgent.isStopped = false;
-                navMeshAgent.SetDestination(targetEntity.transform.position);
+                navMeshAgent.SetDestination(
+                    targetEntity.transform.position);
             }
             else
             {
@@ -171,7 +172,7 @@ public class Zombie : LivingEntity
         // 트리거 충돌한 상대방 게임 오브젝트가 추적 대상이라면 공격 실행
 
         // 자신이 사망하지 않았으며,
-        // 최근 공격 시점에서 timeBetAttack 이상 시간이 지났다면 공격 가능
+        // 최근 공격 시점에서 timeBetAttack(0.5f) 이상 시간이 지났다면 공격 가능
         if(!dead && Time.time >= lastAttackTime + timeBetAttack)
         {
             // 상대방의 LivingEntity 타입 가져오기 시도
