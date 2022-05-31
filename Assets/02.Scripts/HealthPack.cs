@@ -8,19 +8,18 @@ public class HealthPack : MonoBehaviour, IItem
 
     public void Use(GameObject target)
     {
-        // target�� ü���� ȸ���ϴ� ó��
-        Debug.Log("ü���� ȸ���ߴ� : " + health);
-    }
+        // 전달받은 게임 오브젝트로부터 LivingEntity 컴포넌트
+        // 가져오기 시도
+        LivingEntity life = target.GetComponent<LivingEntity>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Use(gameObject);
-    }
+        // LivingEntity 컴포넌트가 있다면
+        if(life != null)
+        {
+            // 체력 회복 실행
+            life.RestoreHealth(health);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // 사용되었으므로 자신을 파괴
+        Destroy(gameObject);
     }
 }
